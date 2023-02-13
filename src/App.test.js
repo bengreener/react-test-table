@@ -1,8 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+test('retrieves all cells described by name', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  const cells = screen.getAllByRole('cell', {description: /name/i});
+  const cellValues = cells.map(cell => cell.textContent);
+  expect(cellValues).toContain('J Doe');
 });
